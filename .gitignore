@@ -1,13 +1,12 @@
-# Maven
-target
+# Build Artifacts
+.gradle
+build/
+target/
+bin/
+!gradle/wrapper/gradle-wrapper.jar
+
 
 # Eclipse
 .project
 .settings
 .classpath
-
-# IntelliJ IDEA
-.idea
-*.iml
-
-*.bat
