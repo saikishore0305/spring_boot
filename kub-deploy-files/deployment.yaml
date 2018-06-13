@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: spring-boot-service-deployment
+spec:
+  replicas: 3 # tells deployment to run 3 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: spring-boot-service
+    spec:
+      containers:
+      - name: spring-boot-service
+        image: sravanimadireddy/springboot-restapi:latest
+        ports:
+        - containerPort: 8080
+        env:
+            - name: MONGO_URI
+              value: mongo-service:27017/test
