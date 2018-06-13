@@ -1,0 +1,87 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.7.RELEASE'
+	}
+	repositories {
+	    jcenter()
+		mavenCentral()
+		maven {
+            url "https://plugins.gradle.org/m2/"
+	     		
+        }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5")
+		classpath ("me.kolek.gradle:gradle-coveralls-plugin:1.0.0")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'jacoco'
+apply plugin: 'org.sonarqube'
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'me.kolek.coveralls'
+
+group 'me.kolek.gradle'
+version '1.1.0-SNAPSHOT'
+
+gradlePlugin {
+    plugins {
+        coveralls {
+            id = 'me.kolek.coveralls'
+            implementationClass = 'me.kolek.gradle.plugin.coveralls.CoverallsPlugin'
+        }
+    }
+	}
+
+sonarqube {
+  properties {
+    property "sonar.projectName", "Gradle-Springboot"
+    property "sonar.projectKey", "MyGradle:JacocoCodeCoverage"
+    property "sonar.reportPath", "${project.buildDir}/jacoco/test.exec"
+  }
+}
+
+test {
+ ignoreFailures = true
+}
+
+
+jacoco {
+toolVersion = "0.7.9"
+reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+reports {
+xml.enabled false
+csv.enabled false
+html.destination file("${buildDir}/jacocoHtml")
+}
+}
+
+group = 'com.spring'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile('org.springframework.boot:spring-boot-starter-test')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+	compile('org.projectlombok:lombok:1.16.10')
+	compile('io.springfox:springfox-swagger2:2.8.0')
+	compile('io.springfox:springfox-swagger-ui:2.8.0')
+	compile('com.mangofactory:swagger-springmvc:1.0.2')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	//compile group('com.h2database', name: 'h2', version: '1.3.148')
+}
