@@ -42,10 +42,10 @@ node {
    
    stage ('Docker Build') {
     if (isUnix()) {
-      sh 'docker build -t SaiKishore/springboot-restapi:latest .'
+      sh 'docker build -t SaiKishore/springboot:latest .'
     } 
     else {
-      bat 'docker build -t SaiKishore/springboot-restapi:latest .'
+      bat 'docker build -t SaiKishore/springboot:latest .'
     }
    }
    
