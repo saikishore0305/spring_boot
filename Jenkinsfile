@@ -45,7 +45,7 @@ node {
       sh 'docker build -t saikishore0305/springboot-restapi .'
     } 
     else {
-      bat 'docker build -t saikishore0305/springboot-restapi .'
+      bat 'docker build -t saikishore0305/springboot-restapi:latest .'
     }
    }
    
@@ -53,7 +53,7 @@ node {
         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) 
 		{
 		  bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          bat 'docker push saikishore0305/springboot-restapi'
+          bat 'docker push saikishore0305/springboot-restapi:latest'
         }
    }
    
