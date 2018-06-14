@@ -42,10 +42,10 @@ node {
    
    stage ('Docker Build') {
     if (isUnix()) {
-      sh 'docker build -t saikishore/springboot:latest .'
+      sh 'docker build -t saikishore0305/springboot-restapi .'
     } 
     else {
-      bat 'docker build -t saikishore/springboot:latest .'
+      bat 'docker build -t saikishore0305/springboot-restapi .'
     }
    }
    
@@ -53,7 +53,7 @@ node {
         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) 
 		{
 		  bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          bat 'docker push SaiKishore/springboot-restapi:latest'
+          bat 'docker push saikishore0305/springboot-restapi'
         }
    }
    
