@@ -34,7 +34,7 @@ node {
       artifacts: [
         [artifactId: 'spring-boot-rest-api-mongodb',
          classifier: '',
-         file: 'build/libs/spring_boot-0.0.1-SNAPSHOT.jar',
+         file: 'build/libs/spring_books-0.0.1-SNAPSHOT.jar',
          type: 'jar']
       ]
     )  
