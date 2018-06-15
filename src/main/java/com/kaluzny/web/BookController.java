@@ -27,7 +27,7 @@ public class BookController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Book> findAllBooks() {
+    public Iterable<Book> findAllBooks() {
         return repository.findAll();
     }
 
