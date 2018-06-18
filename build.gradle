@@ -85,3 +85,6 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	//compile group('com.h2database', name: 'h2', version: '1.3.148')
 }
+configurations {
+    all*.exclude module : 'spring-boot-starter-logging'
+}
