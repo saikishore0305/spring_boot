@@ -10,7 +10,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "c:/Users/VenkataSatyaSravaniM/kubemongodata/db"
+    path: "C:\data\db"
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
